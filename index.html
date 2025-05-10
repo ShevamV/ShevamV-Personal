@@ -1,74 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-<link rel="stylesheet" href="https://semantic-ui.com/dist/semantic.min.css"></link>
-<style id="webmakerstyle">
-body{
-  background-color: grey;
-}
-
-input{
-  border-radius: 5px;
-  padding: 5px;
-  font-family: monospace;
-  font-size: 15px;
-  color: white;
-  background: linear-gradient(#aaaaaa, #555555);
-  border: 1px solid grey;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-textarea{
-  border-radius: 5px;
-  padding: 5px;
-  font-family: monospace;
-  font-size: 15px;
-  color: white;
-  background: linear-gradient(#aaaaaa, #555555);
-  border: 1px solid grey;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-::placeholder{
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  color: white;
-}
-form{
-  background: #dddddd;
-  border-radius: 25px;
-  padding: 15px;
-  margin: 15px;
-  box-shadow: 2px 4px 8px;
-  display: flex;
-  flex-direction: column;
-	
-}
-
-h4{
-  font-family: cursive;
-  font-size: 25px;
-  margin-bottom: 5px;
-  }
-
-
-</style>
-	<title>ShevamV - Contact Us</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShevamV - Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: #f5f6fa; }
+    .container { display: flex; align-items: center; justify-content: center; min-height: 100%; padding: 1rem; position: relative; }
+    form, .success-screen .card {
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      animation: fadeInUp 0.6s ease-out;
+    }
+    h4, .card h1 { color: #333; text-align: center; font-weight: 600; margin-bottom: 1.5rem; }
+    h4 { font-size: 1.5rem; }
+    .input-group { position: relative; margin-bottom: 1.25rem; }
+    input, textarea {
+      width: 100%; border: none; border-bottom: 2px solid #e0e0e0;
+      padding: 0.75rem 0; background: transparent; transition: border-color 0.3s;
+      font-size: 1rem; color: #333;
+    }
+    input:focus, textarea:focus { outline: none; border-bottom-color: #5c6bc0; }
+    label {
+      position: absolute; top: 0.75rem; left: 0;
+      pointer-events: none; font-size: 0.875rem; color: #999;
+      transform-origin: left; transition: transform 0.3s, color 0.3s;
+    }
+    input:focus + label, input:not(:placeholder-shown) + label,
+    textarea:focus + label, textarea:not(:placeholder-shown) + label {
+      transform: translateY(-1.5rem) scale(0.85);
+      color: #5c6bc0;
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    button {
+      width: 100%; border: none; padding: 0.75rem;
+      font-size: 1rem; font-weight: 600; border-radius: 0.5rem;
+      background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 100%);
+      color: #fff; cursor: pointer; overflow: hidden;
+      position: relative; transition: box-shadow 0.3s;
+    }
+    button:hover { box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+    /* ripple */
+    button::after {
+      content: '';
+      position: absolute; width: 100px; height: 100px;
+      background: rgba(255,255,255,0.4);
+      opacity: 0; border-radius: 50%; transform: scale(0);
+      transition: transform 0.6s, opacity 1s;
+    }
+    button:active::after {
+      opacity: 1; transform: scale(2.5); transition: 0s;
+    }
+    .success-screen {
+      display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(245,246,250,0.8); flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .success-screen .card { text-align: center; }
+    #go-back { margin-top: 1rem; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-	<div class="container">
-		<form method="post" action="https://script.google.com/macros/s/AKfycbyXECKAu3MsxWAckFdBizUc8JAUSeZlCljh8BuXkAOj-L4CvtGgMOFAq6y1p545um-o/exec" name="contact-form" align="center">
-			<h4>Contact Us</h4>
-			<input type="text" name="your-name" placeholder="Name" required>
-			<input type="number" name="your-number" placeholder="Number" required>
-			<input type="email" name="your-email" placeholder="Email" required>
-			<textarea name="your-data" type="html" rows="7" placeholder="Write a message to us..." required></textarea>
-			<input type="submit" value="continue" id="submit" class="Login-btn" required>
-		</form>
-	</div>
+  <div class="container">
+    <form id="contact-form" action="https://script.google.com/macros/s/AKfycbyXECKAu3MsxWAckFdBizUc8JAUSeZlCljh8BuXkAOj-L4CvtGgMOFAq6y1p545um-o/exec" method="post" novalidate>
+      <h4>Contact Us</h4>
+      <div class="input-group">
+        <input type="text" name="your-name" id="name" placeholder=" " required />
+        <label for="name">Name</label>
+      </div>
+      <div class="input-group">
+        <input type="tel" name="your-number" id="phone" placeholder=" " pattern="[0-9]{10}" required />
+        <label for="phone">Phone Number</label>
+      </div>
+      <div class="input-group">
+        <input type="email" name="your-email" id="email" placeholder=" " required />
+        <label for="email">Email Address</label>
+      </div>
+      <div class="input-group">
+        <textarea name="your-data" id="message" placeholder=" " required></textarea>
+        <label for="message">Write a message to us...</label>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="success-screen" id="success-screen">
+      <div class="card">
+        <h1>Success</h1>
+        <button id="go-back">Go Back</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('contact-form');
+    const successScreen = document.getElementById('success-screen');
+    const goBackBtn = document.getElementById('go-back');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(form.action, { method: 'POST', body: new FormData(form) })
+        .then(res => {
+          if (res.ok) {
+            form.style.display = 'none';
+            successScreen.style.display = 'flex';
+          } else throw new Error('Network response was not ok');
+        }).catch(() => alert('Submission failed, please try again.'));
+    });
+    goBackBtn.addEventListener('click', () => location.reload());
+  </script>
 </body>
 </html>
